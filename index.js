@@ -11,7 +11,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use('/api/users', require('./Routes/userRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/products', require('./routes/productRoutes'))
 app.use('/api/orders', require('./routes/orderRoutes'))
 app.use('/api/bills', require('./routes/billRoutes'))
