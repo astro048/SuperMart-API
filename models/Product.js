@@ -33,7 +33,10 @@ stockQuantity: {
 
 tagline: String,
 
-image: String,
+image: {
+  type: String,
+  default: ''
+},
 
 description: String
 

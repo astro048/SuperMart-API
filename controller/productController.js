@@ -21,7 +21,11 @@ const getProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const data = await Product.create(req.body)
+    const productData = { ...req.body }
+    if (req.file) {
+      productData.image = `/uploads/${req.file.filename}`
+    }
+    const data = await Product.create(productData)
     res.json(data)
   } catch (err) {
     res.status(400).json({ message: err.message })
@@ -30,9 +34,13 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   try {
+    const productData = { ...req.body }
+    if (req.file) {
+      productData.image = `/uploads/${req.file.filename}`
+    }
     const data = await Product.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      productData,
       { new: true, runValidators: true }
     )
     if (!data) return res.status(404).json({ message: 'Product not found' })
