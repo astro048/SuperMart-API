@@ -11,7 +11,12 @@ dns.setServers(["1.1.1.1", "8.8.8.8"])
 // Debug (remove after deployment works)
 console.log("MONGO_URI:", process.env.MONGO_URI ? "Found ✅" : "Missing ❌");
 
+
 connectDB();
+app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/products', require('./routes/productRoutes'))
+app.use('/api/orders', require('./routes/orderRoutes'))
+app.use('/api/bills', require('./routes/billRoutes'))
 
 const app = express();
 
@@ -33,5 +38,10 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
+<<<<<<< HEAD
   console.log(`Server running on port ${PORT}`);
 });
+=======
+  console.log(`Server running on port ${PORT}`)
+})
+>>>>>>> 5864a8a01f818cc08df58c665f58e032896793f8
