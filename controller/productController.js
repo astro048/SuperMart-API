@@ -23,7 +23,8 @@ const createProduct = async (req, res) => {
   try {
     const productData = { ...req.body }
     if (req.file) {
-      productData.image = `/uploads/${req.file.filename}`
+      const baseUrl = `${req.protocol}://${req.get('host')}`
+      productData.image = `${baseUrl}/uploads/${req.file.filename}`
     }
     const data = await Product.create(productData)
     res.json(data)
@@ -36,7 +37,8 @@ const updateProduct = async (req, res) => {
   try {
     const productData = { ...req.body }
     if (req.file) {
-      productData.image = `/uploads/${req.file.filename}`
+      const baseUrl = `${req.protocol}://${req.get('host')}`
+      productData.image = `${baseUrl}/uploads/${req.file.filename}`
     }
     const data = await Product.findByIdAndUpdate(
       req.params.id,

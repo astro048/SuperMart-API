@@ -12,6 +12,7 @@ dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 // Create Express app
 const app = express();
+app.set('trust proxy', 1);
 
 // Debug
 console.log("MONGO_URI:", process.env.MONGO_URI ? "Found ✅" : "Missing ❌");
